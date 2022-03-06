@@ -14,9 +14,15 @@ jobs:
  
     steps: 
     - name: Prereqs
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        apt-get update
+        apt-get install -y git
+
+    - name: Checkout
       uses: actions/checkout@v2 # v2 is the latest version
 
- 
     - name: Execute script to build our documentation and update pages
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
